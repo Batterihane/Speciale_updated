@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>dk.au.thl.speciale</groupId>
+  <artifactId>speciale</artifactId>
+  <version>1.0.1-SNAPSHOT</version>
+
+  <profiles>
+    <profile>
+      <id>speciale</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+  </profiles>
+
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <!-- Replace the line below with
+         <api.check.phase>none</api.check.phase>
+         to disable forbidden APIs check -->
+    <api.check.phase>process-test-classes</api.check.phase>
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.forester</groupId>
+      <artifactId>Forester</artifactId>
+      <version>1.005</version>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>3.5.9</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.6.2</version>
+      <scope>test</scope>
+    </dependency> 
+  </dependencies>
+
+  <build>
+      <resources>
+          <resource>
+              <directory>src/main/resource</directory>
+              <filtering>true</filtering>
+          </resource>
+          <resource>
+              <directory>src/main/conf</directory>
+          </resource>
+      </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.3.0</version>
+        <configuration>
+          <tarLongFileMode>posix</tarLongFileMode>
+          <descriptors>
+            <descriptor>src/main/assembly/assembly.xml</descriptor>
+          </descriptors>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <phase>package</phase>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
